@@ -19,7 +19,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Test the checkout process")
-    public void checkout() throws InterruptedException {
+    public void checkout() {
         checkoutPage.addProductToCart();
         checkoutPage.completeMandatoryFields();
         checkoutPage.placeTheOrder();
@@ -61,7 +61,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except first name")
-    public void testEmptyFirstNameMandatoryField() throws InterruptedException {
+    public void testEmptyFirstNameMandatoryField()  {
         checkoutPage.addProductToCart();
         checkoutPage.clickCheckoutButton();
         checkoutPage.setLastName();
@@ -71,7 +71,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except last name")
-    public void testEmptyLastNameMandatoryField() throws InterruptedException {
+    public void testEmptyLastNameMandatoryField()  {
         checkoutPage.addProductToCart();
         checkoutPage.clickCheckoutButton();
         checkoutPage.setFirstName();
@@ -81,7 +81,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except address field")
-    public void testEmptyAddressMandatoryField() throws InterruptedException {
+    public void testEmptyAddressMandatoryField() {
         checkoutPage.addProductToCart();
         checkoutPage.clickCheckoutButton();
         checkoutPage.setFirstName();
