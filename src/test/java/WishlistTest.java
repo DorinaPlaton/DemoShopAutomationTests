@@ -19,8 +19,8 @@ public class WishlistTest extends Hooks {
     }
 
 
-    @Test
-    public void addProductToWishlist() throws InterruptedException {
+    @Test(description = "Testing adding a product to the Wishlist functionality")
+    public void addProductToWishlist() {
         wishlistPage.clickGorgeousSoftPizzaProduct();
         wishlistPage.clickAddToWishlist();
         wishlistPage.clickShowWishlist();
@@ -28,11 +28,23 @@ public class WishlistTest extends Hooks {
 
     }
 
-    @Test
+    @Test(description = "Testing deleting a product from the Wishlist after adding two products to the Wishlist")
     public void deleteProductFromWishlist() throws InterruptedException {
         addProductToWishlist();
-        wishlistPage.clickDeleteProductFromWishlist();
+        wishlistPage.clickBrandLogo();
+        wishlistPage.clickAwesomeMetalChair();
+        wishlistPage.clickAddToWishlist();
+        wishlistPage.clickShowWishlist();
+        assertEquals(wishlistPage.getShoppingCartBadge().getText(), "2");
+        wishlistPage.clickDeleteFirstProductFromWishlist();
+        assertEquals(wishlistPage.getShoppingCartBadge().getText(), "1");
+    }
 
+    @Test(description = "Testing adding a product to the cart from the Wishlist")
+    public void addProductToCartFromWishlist() {
+        addProductToWishlist();
+        wishlistPage.clickAddToCartButton();
+        assertEquals(wishlistPage.getCartBadge().getText(), "1");
     }
 
 

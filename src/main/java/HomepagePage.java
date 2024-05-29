@@ -37,6 +37,16 @@ public class HomepagePage extends BasePage {
     private WebElement addToCartFirstProduct;
     @FindBy(css = ".fa-layers-counter.shopping_cart_badge")
     private WebElement shoppingCartBadge;
+    @FindBy(linkText = "Awesome Granite Chips")
+    private WebElement awesomeGraniteChipsProduct;
+    @FindBy(css = ".svg-inline--fa.fa-shopping-bag.fa-w-14.fa-3x.brand-logo")
+    private WebElement logoIcon;
+    @FindBy(css = ".subheader-container .text-muted")
+    private WebElement subheaderHomepage;
+    @FindBy(css = ".svg-inline--fa.fa-undo.fa-w-16")
+    private WebElement resetButton;
+    @FindBy(linkText = "Awesome Soft Shirt")
+    private WebElement awesomeSoftShirtProduct;
 
     public void inputSearchbar() {
         searchbarField.sendKeys("Practical");
@@ -73,12 +83,14 @@ public class HomepagePage extends BasePage {
     public void selectSortByPriceHiToLo() {
         sortByPriceHiToLo.click();
     }
+
     public void clickAddToCartFirstProduct() {
-        for(int i=1; i<=5; i++) {
+        for (int i = 1; i <= 5; i++) {
             addToCartFirstProduct.click();
-       }
+        }
     }
-    public String getClicksOnAddToCart(){
+
+    public String getClicksOnAddToCart() {
         int expectedClicks = 5;
         return Integer.toString(expectedClicks);
     }
@@ -87,4 +99,34 @@ public class HomepagePage extends BasePage {
         return shoppingCartBadge;
     }
 
+    public void clickAwesomeGraniteChipsProduct() {
+        awesomeGraniteChipsProduct.click();
+    }
+
+    public WebElement getAwesomeGraniteChipsProduct() {
+        return awesomeGraniteChipsProduct;
+    }
+
+    public void clickLogoIcon() {
+        logoIcon.click();
+    }
+
+    public WebElement getSubheaderHomepage() {
+        return subheaderHomepage;
+    }
+
+    public void clickResetButton() {
+        resetButton.click();
+    }
+
+    public WebElement getResetButton() {
+        return resetButton;
+    }
+
+    public WebElement getAwesomeSoftShirtProduct() {
+        return awesomeSoftShirtProduct;
+    }
+
 }
+
+

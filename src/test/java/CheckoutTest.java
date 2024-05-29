@@ -3,6 +3,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 
 @Listeners(ExtentTestNGITestListener.class)
@@ -27,13 +28,13 @@ public class CheckoutTest extends Hooks {
 
     }
 
-//    @Test(description = "Increasing the quantity of the product in the checkout cart.")
-//    public void increaseProductQuantityInCheckout() throws InterruptedException {
-//        checkoutPage.addProductToCart();
-//        checkoutPage.clickIncreaseQuantityOfProduct();
-//        assertEquals(checkoutPage.getProductsAmount().getText(), "$31.98");
-//    }
-
+/*    @Test(description = "Increasing the quantity of the product in the checkout cart.")
+    public void increaseProductQuantityInCheckout() throws InterruptedException {
+        checkoutPage.addProductToCart();
+       checkoutPage.clickIncreaseQuantityOfProduct();
+        assertEquals(checkoutPage.getProductsAmount().getText(), "$31.98");
+    }
+*/
     @Test(description = "Calculating the total amount of the cart after updating the quantity of product to 2.")
     public void increaseQuantityOfTheProduct() {
         checkoutPage.clickGraniteChipsProduct();
@@ -43,7 +44,7 @@ public class CheckoutTest extends Hooks {
         double expectedTotalAmount = checkoutPage.productPrice() * 2;
         checkoutPage.clickIncreaseQuantityOfProduct();
         ExtentTestNGITestListener.getTest().log(Status.INFO, "The price of the product after updating the quantity to 2 is: " + checkoutPage.productPrice());
-        assertEquals(checkoutPage.productPrice(),expectedTotalAmount);
+        assertEquals(checkoutPage.productPrice(), expectedTotalAmount);
         ExtentTestNGITestListener.getTest().log(Status.INFO, "The price after updating the quantity is correct.");
     }
 
@@ -61,7 +62,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except first name")
-    public void testEmptyFirstNameMandatoryField()  {
+    public void testEmptyFirstNameMandatoryField() {
         checkoutPage.addProductToCart();
         checkoutPage.clickCheckoutButton();
         checkoutPage.setLastName();
@@ -71,7 +72,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except last name")
-    public void testEmptyLastNameMandatoryField()  {
+    public void testEmptyLastNameMandatoryField() {
         checkoutPage.addProductToCart();
         checkoutPage.clickCheckoutButton();
         checkoutPage.setFirstName();
