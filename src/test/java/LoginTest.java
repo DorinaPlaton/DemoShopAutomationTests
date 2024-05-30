@@ -30,7 +30,7 @@ public class LoginTest extends Hooks {
     }
 
     @Test(description = "Testing the Log Out functionality ")
-    public void logoutTest() throws InterruptedException {
+    public void logoutTest() {
         loginPage.loginProcess();
         loginPage.clickWelcomeMessage();
         loginPage.clickLogoutButton();
@@ -54,7 +54,7 @@ public class LoginTest extends Hooks {
     }
 
     @Test(description = "Testing the login functionality filling the username field with the wrong username")
-    public void testWrongUsernameField() throws InterruptedException {
+    public void testWrongUsernameField() {
         loginPage.clickLogin();
         loginPage.setIncorrectUsername();
         loginPage.setPasswordField();
@@ -63,7 +63,7 @@ public class LoginTest extends Hooks {
     }
 
     @Test(description = "Testing the login functionality filling the password field with the wrong password")
-    public void testWrongPasswordField() throws InterruptedException {
+    public void testWrongPasswordField() {
         loginPage.clickLogin();
         loginPage.setUsernameField();
         loginPage.setIncorrectPassword();
@@ -72,7 +72,7 @@ public class LoginTest extends Hooks {
     }
 
     @Test(description = "Testing the login functionality filling the username and password fields with the wrong data")
-    public void testWrongUsernameAndPasswordFields() throws InterruptedException {
+    public void testWrongUsernameAndPasswordFields() {
         loginPage.clickLogin();
         loginPage.setIncorrectUsername();
         loginPage.setIncorrectPassword();
