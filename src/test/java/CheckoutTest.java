@@ -23,8 +23,9 @@ public class CheckoutTest extends Hooks {
         checkoutPage.addProductToCart();
         checkoutPage.completeMandatoryFields();
         checkoutPage.placeTheOrder();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The product was added to the cart and completed mandatory fields");
         assertEquals(checkoutPage.getOrderSuccessMessage().getText(), "Thank you for your order!");
-        ExtentTestNGITestListener.getTest().log(Status.INFO, "The order was placed successfully receiving the message 'Thank you for your order!'");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The order was placed successfully receiving the message: " + checkoutPage.getOrderSuccessMessage().getText());
 
     }
 
@@ -63,6 +64,7 @@ public class CheckoutTest extends Hooks {
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Completed all the mandatory fields except the First Name field");
         checkoutPage.clickContinueCheckoutButton();
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "First Name is required");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Received the error message: " + checkoutPage.getErrorMessageMandatoryFields().getText());
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except last name")
@@ -74,6 +76,7 @@ public class CheckoutTest extends Hooks {
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Completed all the mandatory fields except the Last Name field");
         checkoutPage.clickContinueCheckoutButton();
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "Last Name is required");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Received the error message: " + checkoutPage.getErrorMessageMandatoryFields().getText());
     }
 
     @Test(description = "Fill all the mandatory fields for the checkout except address field")
@@ -85,6 +88,7 @@ public class CheckoutTest extends Hooks {
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Completed all the mandatory fields except Address field");
         checkoutPage.clickContinueCheckoutButton();
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "Address is required");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Received the error message: " + checkoutPage.getErrorMessageMandatoryFields().getText());
     }
 
     @Test(description = "Testing if the checkout page shows the right price amount after adding 2 different products to the cart")
@@ -115,8 +119,12 @@ public class CheckoutTest extends Hooks {
     @Test(description = "Testing deleting product from the cart using the trashcan button")
     public void testDeleteWithTrashcan() {
         checkoutPage.clickIncredibleConcreteHatCartButton();
+        ExtentTestNGITestListener.getTest().log(Status.INFO,"Adding a product to the cart");
         checkoutPage.clickShowCart();
+        ExtentTestNGITestListener.getTest().log(Status.INFO,"Accessing the Cart page");
         checkoutPage.clickTrashcanButton();
+        ExtentTestNGITestListener.getTest().log(Status.INFO,"Deleting the product using the trashcan button");
         assertEquals(checkoutPage.getEmptyCartMessage().getText(), "How about adding some products in your cart?");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Message displayed: " + checkoutPage.getEmptyCartMessage().getText());
     }
 }

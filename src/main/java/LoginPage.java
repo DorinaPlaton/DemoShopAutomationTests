@@ -23,14 +23,18 @@ public class LoginPage extends BasePage {
     private WebElement passwordField;
     @FindBy(css = ".btn.btn-primary")
     private WebElement loginButton;
-    @FindBy(linkText = "dino")
+    @FindBy(xpath = "(//div[@class='navbar-nav'])/span/span/span")
     private WebElement welcomeMessage;
+    @FindBy(linkText = "dino")
+    private WebElement username;
     @FindBy(css = ".login_wrapper .error")
     private WebElement loginErrorMessageMandatoryFields;
     @FindBy(css = ".svg-inline--fa.fa-sign-out-alt.fa-w-16")
     private WebElement logoutButton;
     @FindBy(css = ".navbar-nav .navbar-text")
     private WebElement guestWelcomeMessage;
+    @FindBy(css = ".subheader-container")
+    private WebElement accountSubheader;
 
     public void clickLogin() {
         login.click();
@@ -74,6 +78,14 @@ public class LoginPage extends BasePage {
 
     public WebElement getGuestWelcomeMessage() {
         return guestWelcomeMessage;
+    }
+
+    public WebElement getAccountSubheader() {
+        return accountSubheader;
+    }
+
+    public void clickUsername() {
+        username.click();
     }
 
     public void loginProcess() {

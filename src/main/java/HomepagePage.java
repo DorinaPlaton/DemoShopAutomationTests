@@ -19,9 +19,11 @@ public class HomepagePage extends BasePage {
     private WebElement searchbarField;
     @FindBy(css = ".btn.btn-light.btn-sm")
     private WebElement searchButton;
-    @FindBy(linkText = "Practical Wooden Bacon")
-    private WebElement productWoodenBacon;
-    @FindBy(linkText = "Practical Metal Mouse")
+    @FindBy(xpath = "(//div[@class='card'])[1]//a")
+    private WebElement productWoodenBacon1;
+    @FindBy(xpath = "(//div[@class='card'])[2]//a")
+    private WebElement productWoodenBacon2;
+    @FindBy(xpath = "(//div[@class='card'])[3]//a")
     private WebElement productMetalMouse;
     @FindBy(css = ".sort-products-select.form-control.form-control-sm")
     private WebElement sortDropdownMenu;
@@ -84,8 +86,11 @@ public class HomepagePage extends BasePage {
         searchButton.click();
     }
 
-    public WebElement getProductWoodenBacon() {
-        return productWoodenBacon;
+    public WebElement getProductWoodenBacon1() {
+        return productWoodenBacon1;
+    }
+    public WebElement getProductWoodenBacon2() {
+        return productWoodenBacon2;
     }
 
     public WebElement getProductMetalMouse() {
