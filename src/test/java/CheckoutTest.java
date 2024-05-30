@@ -3,7 +3,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.assertEquals;
 
 @Listeners(ExtentTestNGITestListener.class)
@@ -20,7 +19,7 @@ public class CheckoutTest extends Hooks {
     }
 
     @Test(description = "Test the checkout process")
-    public void checkout() {
+    public void checkoutTest() {
         checkoutPage.addProductToCart();
         checkoutPage.completeMandatoryFields();
         checkoutPage.placeTheOrder();
@@ -28,13 +27,6 @@ public class CheckoutTest extends Hooks {
 
     }
 
-/*    @Test(description = "Increasing the quantity of the product in the checkout cart.")
-    public void increaseProductQuantityInCheckout() throws InterruptedException {
-        checkoutPage.addProductToCart();
-       checkoutPage.clickIncreaseQuantityOfProduct();
-        assertEquals(checkoutPage.getProductsAmount().getText(), "$31.98");
-    }
-*/
     @Test(description = "Calculating the total amount of the cart after updating the quantity of product to 2.")
     public void increaseQuantityOfTheProduct() {
         checkoutPage.clickGraniteChipsProduct();
@@ -91,5 +83,30 @@ public class CheckoutTest extends Hooks {
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "Address is required");
     }
 
+    @Test(description = "Testing if the checkout page shows the right price amount after adding 2 different products to the cart")
+    public void testSumOf2Products() {
+        checkoutPage.clickIncredibleConcreteHatCartButton();
+        checkoutPage.clickPracticalWoodenBaconCartButton();
+        checkoutPage.clickShowCart();
+        double expectedProductsSum = checkoutPage.productPrice1() + checkoutPage.productPrice2();
+        assertEquals(checkoutPage.totalValue(), expectedProductsSum);
+    }
 
+    @Test(description = "Testing adding the same product to the cart twice and deleting one by decreasing the number of the product in the cart.")
+    public void testDecreasingNrOfTheProduct() {
+        checkoutPage.clickIncredibleConcreteHatCartButton();
+        checkoutPage.clickIncredibleConcreteHatCartButton();
+        checkoutPage.clickShowCart();
+        assertEquals(checkoutPage.getProductQuantityNr().getText(), "2");
+        checkoutPage.clickDecreaseProductButton();
+        assertEquals(checkoutPage.getProductQuantityNr().getText(),"1");
+    }
+
+    @Test(description = "Testing deleting product from the cart using the trashcan button")
+    public void testDeleteWithTrashcan() {
+        checkoutPage.clickIncredibleConcreteHatCartButton();
+        checkoutPage.clickShowCart();
+        checkoutPage.clickTrashcanButton();
+        assertEquals(checkoutPage.getEmptyCartMessage().getText(), "How about adding some products in your cart?");
+    }
 }

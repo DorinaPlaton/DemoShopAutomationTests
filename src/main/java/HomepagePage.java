@@ -47,6 +47,34 @@ public class HomepagePage extends BasePage {
     private WebElement resetButton;
     @FindBy(linkText = "Awesome Soft Shirt")
     private WebElement awesomeSoftShirtProduct;
+    @FindBy(xpath = "(//div[@class= 'card'])[1]//a")
+    private WebElement firstProduct;
+    @FindBy(xpath = "(//div[@class= 'card'])[10]//a")
+    private WebElement lastProduct;
+    @FindBy(xpath = "(//div[@class= 'card'])[1]//span")
+    private WebElement firstProductPrice;
+    @FindBy(xpath = "(//div[@class= 'card'])[10]//span")
+    private WebElement lastProductPrice;
+
+    public char getFirstProduct() {
+        String firstString = firstProduct.getText();
+        return firstString.charAt(0);
+    }
+
+    public char getLastProduct() {
+        String lastString = lastProduct.getText();
+        return lastString.charAt(0);
+    }
+
+    public double getFirstProductPrice() {
+        String firstProductValue = firstProductPrice.getText();
+        return Double.parseDouble(firstProductValue);
+    }
+
+    public double getLastProductPrice() {
+        String lastProductValue = lastProductPrice.getText();
+        return Double.parseDouble(lastProductValue);
+    }
 
     public void inputSearchbar() {
         searchbarField.sendKeys("Practical");

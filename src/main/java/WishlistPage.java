@@ -22,7 +22,7 @@ public class WishlistPage extends BasePage {
     @FindBy(css = ".card-link")
     private WebElement productInWishlist;
     @FindBy(css = ".fa-layers-counter.shopping_cart_badge")
-    private WebElement shoppingCartBadge;
+    private WebElement wishlistBadge;
     @FindBy(css = ".svg-inline--fa.fa-heart-broken.fa-w-16.fa-2x")
     private WebElement deleteFromWishlistButton;
     @FindBy(css = ".svg-inline--fa.fa-shopping-bag.fa-w-14.fa-3x.brand-logo")
@@ -33,8 +33,12 @@ public class WishlistPage extends BasePage {
     private WebElement firstProductDeleteFromWishlist;
     @FindBy(css = ".svg-inline--fa.fa-cart-plus.fa-w-18.fa-2x")
     private WebElement addToCartButton;
-    @FindBy(xpath = "//div[@class='fa-layers-counter shopping_cart_badge'][1]")
+    @FindBy(xpath = "//div[@class='navbar-collapse collapse']//span/a[1]/span")
     private WebElement cartBadge;
+    @FindBy(xpath = "//div[@class='row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1']//div[5]//button[2]")
+    private WebElement incredibleConcreteHatWishlistButton;
+    @FindBy(xpath = "//div[@class='row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1']//div[9]//button[2]")
+    private WebElement practicalWoodenBaconWishlistButton;
 
 
     public void clickGorgeousSoftPizzaProduct() {
@@ -57,8 +61,8 @@ public class WishlistPage extends BasePage {
         deleteFromWishlistButton.click();
     }
 
-    public WebElement getShoppingCartBadge() {
-        return shoppingCartBadge;
+    public WebElement getWishlistBadge() {
+        return wishlistBadge;
     }
 
     public void clickBrandLogo() {
@@ -79,5 +83,13 @@ public class WishlistPage extends BasePage {
 
     public WebElement getCartBadge() {
         return cartBadge;
+    }
+
+    public void clickWishlistButtonIncredibleConcreteHat() {
+        incredibleConcreteHatWishlistButton.click();
+    }
+
+    public void clickWishlistButtonPracticalWoodenBacon() {
+        practicalWoodenBaconWishlistButton.click();
     }
 }

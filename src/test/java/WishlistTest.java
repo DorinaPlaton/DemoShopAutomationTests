@@ -35,9 +35,9 @@ public class WishlistTest extends Hooks {
         wishlistPage.clickAwesomeMetalChair();
         wishlistPage.clickAddToWishlist();
         wishlistPage.clickShowWishlist();
-        assertEquals(wishlistPage.getShoppingCartBadge().getText(), "2");
+        assertEquals(wishlistPage.getWishlistBadge().getText(), "2");
         wishlistPage.clickDeleteFirstProductFromWishlist();
-        assertEquals(wishlistPage.getShoppingCartBadge().getText(), "1");
+        assertEquals(wishlistPage.getWishlistBadge().getText(), "1");
     }
 
     @Test(description = "Testing adding a product to the cart from the Wishlist")
@@ -45,6 +45,20 @@ public class WishlistTest extends Hooks {
         addProductToWishlist();
         wishlistPage.clickAddToCartButton();
         assertEquals(wishlistPage.getCartBadge().getText(), "1");
+    }
+
+    @Test(description = "Testing adding products to Wishlist from the Homepage")
+    public void addProductsToWishlistFromHomepage() {
+        wishlistPage.clickWishlistButtonIncredibleConcreteHat();
+        wishlistPage.clickWishlistButtonPracticalWoodenBacon();
+        assertEquals(wishlistPage.getWishlistBadge().getText(), "2");
+    }
+
+    @Test(description = "Testing deleting a product from the Wishlist using the Homepage")
+    public void  deleteProductWishlistFromHomepage() {
+        addProductsToWishlistFromHomepage();
+        wishlistPage.clickWishlistButtonIncredibleConcreteHat();
+        assertEquals(wishlistPage.getWishlistBadge().getText(), "1");
     }
 
 

@@ -66,6 +66,32 @@ public class CheckoutPage extends BasePage {
         return Double.parseDouble(cleanFinalAmount);
     }
 
+    @FindBy(xpath = "//div[@class='row row-cols-xl-1 row-cols-lg-1 row-cols-md-1 row-cols-sm-1 row-cols-1']//div[2]//div[1]")
+    private WebElement firstProductPrice;
+    public double productPrice1() {
+        String firstProductValue = firstProductPrice.getText();
+        String cleanProductValue1 = firstProductValue.replace("$", "");
+        return Double.parseDouble(cleanProductValue1);
+    }
+
+    @FindBy(xpath = "//div[@class='row row-cols-xl-1 row-cols-lg-1 row-cols-md-1 row-cols-sm-1 row-cols-1']//div[2]//div[2]")
+    private WebElement secondProductPrice;
+
+    public double productPrice2() {
+        String secondProductValue = secondProductPrice.getText();
+        String cleanProductValue2 = secondProductValue.replace("$", "");
+        return Double.parseDouble(cleanProductValue2);
+    }
+
+    @FindBy(xpath = "(//td[@class='amount'])[1]")
+    private WebElement totalPrice;
+
+    public double totalValue() {
+        String totalProductsValue = totalPrice.getText();
+        String cleanTotalValue = totalProductsValue.replace("$", "");
+        return Double.parseDouble(cleanTotalValue);
+    }
+
 
     public void clickGraniteChipsProduct() {
         graniteChipsProduct.click();
@@ -151,6 +177,43 @@ public class CheckoutPage extends BasePage {
 
     public void clickIncreaseQuantityOfProduct() {
         increaseQuantityOfProduct.click();
+    }
+
+    @FindBy(xpath = "//div[@class='row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1']//div[5]//button[1]")
+    private WebElement incredibleConcreteHatCartButton;
+    @FindBy(xpath = "//div[@class='row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1']//div[9]//button[1]")
+    private WebElement practicalWoodenBaconCartButton;
+    @FindBy(css = ".svg-inline--fa.fa-minus-circle.fa-w-16")
+    private WebElement decreaseProductButton;
+    @FindBy(xpath = "(//div[@class='col-md-auto'])[1]")
+    private WebElement productQuantityNr;
+    @FindBy(css = ".svg-inline--fa.fa-trash.fa-w-14")
+    private WebElement trashcanButton;
+    @FindBy(css = ".text-center.container")
+    private WebElement emptyCartMessage;
+
+    public void clickIncredibleConcreteHatCartButton() {
+        incredibleConcreteHatCartButton.click();
+    }
+
+    public void clickPracticalWoodenBaconCartButton() {
+        practicalWoodenBaconCartButton.click();
+    }
+
+    public void clickDecreaseProductButton() {
+        decreaseProductButton.click();
+    }
+
+    public WebElement getProductQuantityNr() {
+        return productQuantityNr;
+    }
+
+    public void clickTrashcanButton() {
+        trashcanButton.click();
+    }
+
+    public WebElement getEmptyCartMessage() {
+        return emptyCartMessage;
     }
 
 

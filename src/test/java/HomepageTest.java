@@ -1,11 +1,12 @@
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 @Listeners(ExtentTestNGITestListener.class)
 
@@ -31,7 +32,7 @@ public class HomepageTest extends Hooks {
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Search after 'Practical' keyword initiated.");
         assertEquals(homepagePage.getProductWoodenBacon().getText(), "Practical Wooden Bacon");
         assertEquals(homepagePage.getProductMetalMouse().getText(), "Practical Metal Mouse");
-        // al 3-lea produs
+
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Three products were found.");
     }
 
@@ -40,20 +41,21 @@ public class HomepageTest extends Hooks {
     public void testSortByNameAToZ() {
         homepagePage.clickSortDropdownMenu();
         homepagePage.selectSortByNameAToZ();
-
+        assertTrue(homepagePage.getFirstProduct() < homepagePage.getLastProduct());
     }
 
     @Test(description = "Testing the sort functionality from the Homepage selecting from the dropdown menu 'Sort by name(Z to A)")
     public void testSortByNameZToA() {
         homepagePage.clickSortDropdownMenu();
         homepagePage.selectSortByNameZToA();
-
+        assertTrue(homepagePage.getFirstProduct() > homepagePage.getLastProduct());
     }
 
     @Test(description = "Testing the sort functionality from the Homepage selecting from the dropdown menu 'Sort by price(low to high)")
     public void testSortByPriceLoToHi() {
         homepagePage.clickSortDropdownMenu();
         homepagePage.selectSortByPriceLoToHi();
+        assertTrue(homepagePage.getFirstProductPrice() < homepagePage.getLastProductPrice());
 
     }
 
@@ -61,12 +63,11 @@ public class HomepageTest extends Hooks {
     public void testSortByPriceHiToLo() {
         homepagePage.clickSortDropdownMenu();
         homepagePage.selectSortByPriceHiToLo();
-        assertEquals(homepagePage.getAwesomeSoftShirtProduct().getText(), "Awesome Soft Shirt");
-        assertEquals(homepagePage.getProductWoodenBacon().getText(), "Practical Wooden Bacon");
+        assertTrue(homepagePage.getFirstProductPrice() > homepagePage.getLastProductPrice());
     }
 
     @Test(description = "Testing adding to cart first product from the page to see if the number on the cart icon at the top of the page changes accordingly")
-    public void testNumberOnCartIcon() throws InterruptedException {
+    public void testNumberOnCartIcon() {
         homepagePage.clickAddToCartFirstProduct();
         assertEquals(homepagePage.getShoppingCartBadge().getText(), homepagePage.getClicksOnAddToCart());
     }
@@ -88,7 +89,7 @@ public class HomepageTest extends Hooks {
     }
 
     @Test(description = "Testing Reset the application after login")
-    private void testReset2() {
+    public void testReset2() {
         loginPage.clickLogin();
         loginPage.setUsernameField();
         loginPage.setPasswordField();
