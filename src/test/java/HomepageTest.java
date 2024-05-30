@@ -24,7 +24,6 @@ public class HomepageTest extends Hooks {
         wait = new WebDriverWait(driver, 10);
     }
 
-    //searchbar
     @Test(description = "Testing the searchbar using the keyword 'Practical'. Expecting to get three products.")
     public void searchbarTest() {
         homepagePage.inputSearchbar();
@@ -32,7 +31,6 @@ public class HomepageTest extends Hooks {
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Search after 'Practical' keyword initiated.");
         assertEquals(homepagePage.getProductWoodenBacon().getText(), "Practical Wooden Bacon");
         assertEquals(homepagePage.getProductMetalMouse().getText(), "Practical Metal Mouse");
-
         ExtentTestNGITestListener.getTest().log(Status.INFO, "Three products were found.");
     }
 
