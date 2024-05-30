@@ -21,9 +21,10 @@ public class CheckoutTest extends Hooks {
     @Test(description = "Test the checkout process")
     public void checkoutTest() {
         checkoutPage.addProductToCart();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The product was added to the card");
         checkoutPage.completeMandatoryFields();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "All mandatory fields have been successfully filled out");
         checkoutPage.placeTheOrder();
-        ExtentTestNGITestListener.getTest().log(Status.INFO, "The product was added to the cart and completed mandatory fields");
         assertEquals(checkoutPage.getOrderSuccessMessage().getText(), "Thank you for your order!");
         ExtentTestNGITestListener.getTest().log(Status.INFO, "The order was placed successfully receiving the message: " + checkoutPage.getOrderSuccessMessage().getText());
 
