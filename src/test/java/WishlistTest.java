@@ -33,7 +33,7 @@ public class WishlistTest extends Hooks {
     }
 
     @Test(description = "Testing deleting a product from the Wishlist after adding two products to the Wishlist")
-    public void deleteProductFromWishlist() throws InterruptedException {
+    public void deleteProductFromWishlist() {
         addProductToWishlist();
         wishlistPage.clickBrandLogo();
         wishlistPage.clickAwesomeMetalChair();

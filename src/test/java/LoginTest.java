@@ -4,7 +4,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 @Listeners(ExtentTestNGITestListener.class)
 
@@ -21,7 +20,7 @@ public class LoginTest extends Hooks {
     }
 
     @Test(description = "Testing the Login functionality using the given username and password")
-    public void loginTest() throws InterruptedException {
+    public void loginTest() {
         loginPage.clickLogin();
         loginPage.setUsernameField();
         loginPage.setPasswordField();
