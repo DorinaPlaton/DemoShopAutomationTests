@@ -24,6 +24,7 @@ public class CheckoutTest extends Hooks {
         checkoutPage.completeMandatoryFields();
         checkoutPage.placeTheOrder();
         assertEquals(checkoutPage.getOrderSuccessMessage().getText(), "Thank you for your order!");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The order was placed successfully receiving the message 'Thank you for your order!'");
 
     }
 
@@ -59,6 +60,7 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickCheckoutButton();
         checkoutPage.setLastName();
         checkoutPage.setAddressField();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Completed all the mandatory fields except the First Name field");
         checkoutPage.clickContinueCheckoutButton();
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "First Name is required");
     }
@@ -69,6 +71,7 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickCheckoutButton();
         checkoutPage.setFirstName();
         checkoutPage.setAddressField();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Completed all the mandatory fields except the Last Name field");
         checkoutPage.clickContinueCheckoutButton();
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "Last Name is required");
     }
@@ -79,6 +82,7 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickCheckoutButton();
         checkoutPage.setFirstName();
         checkoutPage.setLastName();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "Completed all the mandatory fields except Address field");
         checkoutPage.clickContinueCheckoutButton();
         assertEquals(checkoutPage.getErrorMessageMandatoryFields().getText(), "Address is required");
     }
@@ -88,7 +92,11 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickIncredibleConcreteHatCartButton();
         checkoutPage.clickPracticalWoodenBaconCartButton();
         checkoutPage.clickShowCart();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The price of the first product is " + checkoutPage.productPrice1());
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The price of the second product is " + checkoutPage.productPrice2());
         double expectedProductsSum = checkoutPage.productPrice1() + checkoutPage.productPrice2();
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The total price of the products should be: " + expectedProductsSum);
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The total price of the products is: " + checkoutPage.totalValue());
         assertEquals(checkoutPage.totalValue(), expectedProductsSum);
     }
 
@@ -98,8 +106,10 @@ public class CheckoutTest extends Hooks {
         checkoutPage.clickIncredibleConcreteHatCartButton();
         checkoutPage.clickShowCart();
         assertEquals(checkoutPage.getProductQuantityNr().getText(), "2");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The number of the products in the cart is: " + checkoutPage.getProductQuantityNr().getText());
         checkoutPage.clickDecreaseProductButton();
         assertEquals(checkoutPage.getProductQuantityNr().getText(),"1");
+        ExtentTestNGITestListener.getTest().log(Status.INFO, "The number of the products in the cart after decreasing it by one is: " + checkoutPage.getProductQuantityNr().getText());
     }
 
     @Test(description = "Testing deleting product from the cart using the trashcan button")
